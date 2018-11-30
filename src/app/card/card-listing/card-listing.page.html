@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{cardDeckGroup}}</ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list *ngIf="cards.length > 0"> 
+        <ion-card *ngFor="let card of cards">
+          <ion-card-header text-wrap>
+            <ion-card-subtitle>
+              {{card.cardSet}}
+            </ion-card-subtitle>
+            <ion-card-title>
+              {{card.name}}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div [innerHTML]="card.text"></div>
+            <ion-button [href]="'/tabs/(card:card/' +card.cardId + ')'" size="medium" expand="full">
+              See Detail
+            </ion-button>
+          </ion-card-content>
+        </ion-card>
+    </ion-list>
+</ion-content>
