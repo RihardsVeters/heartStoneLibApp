@@ -8,13 +8,12 @@ export class LoaderService{
 
     constructor(private loadingCtrl: LoadingController){}
 
-    public async presentLoading():Promise<HTMLIonLoadingElement>{
+    public async presentLoading(): Promise<HTMLIonLoadingElement> {
         this.loader = await this.loadingCtrl.create({
-            content: 'Loading',
-            translucent: true
+          message: 'Loading',
+          translucent: true
         });
         this.loader.present();
-    
         return this.loader;
     }
     public dismissLoading(){
